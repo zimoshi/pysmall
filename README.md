@@ -1,0 +1,2 @@
+# pysmall
+Read releases.
