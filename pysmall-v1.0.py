@@ -1,0 +1,17 @@
+(s:=__import__("socket"))
+g=lambda h,p="/":(lambda c:(c.send(f"GET {p} HTTP/1.0\r\nHost:{h}\r\n\r\n".encode()),
+                            c.recv(1<<20))[1].split(b"\r\n\r\n",1)[1].decode())(s.create_connection((h,80)))
+c=None;ip=lambda:c or globals().update(c=g("api.ipify.org")) or c
+j=lambda h,p="/":__import__("json").loads(g(h,p))
+p=lambda h,n:(lambda x:x.connect_ex((h,n))<1)(s.socket())
+t=lambda h,n,b:(lambda c:(c.send(b),c.recv(9999)))(s.create_connection((h,n)))
+u=lambda:__import__("uuid").uuid4().hex
+h=lambda s,n=256:getattr(__import__("hashlib"),f"sha{n}")(s.encode()).hexdigest()
+tm=lambda:__import__("time").time()
+r=lambda x:__import__("random").choice(x)
+ri=lambda a,b:__import__("random").randint(a,b)
+e=lambda s:__import__("base64").b64encode(s.encode()).decode()
+d=lambda s:__import__("base64").b64decode(s).decode()
+rf=lambda p:open(p).read()
+wf=lambda p,s:open(p,"w").write(s)
+sw=lambda:(lambda t:lambda:__import__("time").time()-t)(__import__("time").time())
